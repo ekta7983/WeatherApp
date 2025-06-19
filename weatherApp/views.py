@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib import messages
 import requests
 import datetime
+import os
+from dotenv import load_dotenv
+
 
 
 def home(request):
@@ -10,11 +13,12 @@ def home(request):
     else:
         city = 'meerut'
 
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=4d7ec0f45ead664bc3d1903d8638ed4a' 
-    PARAMS = {'units':'metric'}
+    API_KEY = os.getenv('GOOGLE_API_KEY')
+    SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
+    OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
 
-    API_KEY ='AIzaSyCErevNQjx3UxmuJZhbPamDsMVg85BaRfk'
-    SEARCH_ENGINE_ID = '5299cbc309d914b39'
+    weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHER_API_KEY}'
+    PARAMS = {'units': 'metric'}
 
     query = city + " 1920x1080"
     page = 1
